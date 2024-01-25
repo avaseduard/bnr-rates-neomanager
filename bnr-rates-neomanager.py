@@ -6,8 +6,8 @@ import time
 import datetime
 import xml.etree.ElementTree as ET
 
-# Neomanager's password
-neo_pass = 'password'
+#! Neomanager's password
+neo_pass = 'not_the_real_password'
 
 # Get the exchange rates and set them to the dictionary
 def get_exchange_rates(xml_url, currency_codes):
