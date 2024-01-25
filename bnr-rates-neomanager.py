@@ -24,7 +24,7 @@ def get_exchange_rates(xml_url, currency_codes):
     if body_element is None:
         print('Body element not found in XML.')
         return None
-    # Initialize dictionary for exchange rates (some are fixed values decided by the company)
+    # Initialize dictionary to store exchange rates, among the ones that are fixed values decided by the company
     bnr_rates = {
     'EUR': '4.4',
     'GBP': '5.2',
@@ -49,7 +49,7 @@ bnr_rates = get_exchange_rates(xml_url, currency_codes)
 # Account for the HUF currency format exception
 bnr_rates['HUF'] = str(round(float(bnr_rates['HUF'])/100, 4))
 
-# Rearrange values in the order that Neomanager wants them
+# Rearrange values in the order that Neomanager has them
 desired_order_list = ['BGN', 'EUR', 'HUF', 'GBP', 'USD']
 reordered_rates = {k: bnr_rates[k] for k in desired_order_list}
 
@@ -77,8 +77,12 @@ pyautogui.typewrite(neo_pass)
 pyautogui.press('enter')
 # Pause execution until Neomanager starts
 time.sleep(6)
+# Take into account the Neomanager's backup notification
+pyautogui.press('enter')
 # Move Neomanager's window to the half left of the screen
 pyautogui.hotkey('win', 'left')
+time.sleep(1)
+pyautogui.press('esc')
 # Select Menu bar -> Parametri -> Cursuri
 pyautogui.press(['alt', 'p', 'c', 'c', 'enter'])
 # Select the date field
